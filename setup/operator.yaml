@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: presto-operator
+  name: presto-system
 
 ---
 
@@ -9,7 +9,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: presto-operator
-  namespace: presto-operator
+  namespace: presto-system
 
 ---
 
@@ -137,10 +137,10 @@ kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
   name: presto-operator
-  namespace: presto-operator
+  namespace: presto-system
 subjects:
   - kind: ServiceAccount
-    namespace: presto-operator
+    namespace: presto-system
     name: presto-operator
 roleRef:
   kind: ClusterRole
@@ -152,7 +152,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
  name: presto-operator
- namespace: presto-operator
+ namespace: presto-system
 spec:
  replicas: 1
  selector:
